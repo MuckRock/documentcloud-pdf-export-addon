@@ -1,46 +1,24 @@
 """
-This is a hello world add-on for DocumentCloud.
-
-It demonstrates how to write a add-on which can be activated from the
-DocumentCloud add-on system and run using Github Actions.  It receives data
-from DocumentCloud via the request dispatch and writes data back to
-DocumentCloud using the standard API
+This add-on allows you to bulk export PDFs from DocumentCloud
 """
+
+import zipfile
 
 from addon import AddOn
 
 
-class HelloWorld(AddOn):
-    """An example Add-On for DocumentCloud."""
+class PdfExport(AddOn):
+    """Export all of the selected documents in a zip file"""
 
     def main(self):
-        """The main add-on functionality goes here."""
-        # fetch your add-on specific data
-        name = self.data.get("name", "world")
-
-        self.set_message("Hello World start!")
-
-        # add a hello note to the first page of each selected document
-        if self.documents:
-            length = len(self.documents)
-            for i, doc_id in enumerate(self.documents):
-                self.set_progress(100 * i // length)
+        with zipfile.ZipFile("export.zip", mode="w") as archive:
+            for doc_id in self.documents:
                 document = self.client.documents.get(doc_id)
-                document.annotations.create(f"Hello {name}!", 0)
-        elif self.query:
-            documents = self.client.documents.search(self.query)[:3]
-            length = len(documents)
-            for i, document in enumerate(documents):
-                self.set_progress(100 * i // length)
-                document.annotations.create(f"Hello {name}!", 0)
+                with archive.open(f"{document.slug} - {document.id}.pdf", "w") as pdf:
+                    pdf.write(document.pdf)
 
-        with open("hello.txt", "w+") as file_:
-            file_.write("Hello world!")
-            self.upload_file(file_)
-
-        self.set_message("Hello World end!")
-        self.send_mail("Hello World!", "We finished!")
+        self.upload_file(open("export.zip"))
 
 
 if __name__ == "__main__":
-    HelloWorld().main()
+    PdfExport().main()
