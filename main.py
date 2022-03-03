@@ -4,7 +4,7 @@ This add-on allows you to bulk export PDFs from DocumentCloud
 
 import zipfile
 
-from addon import AddOn
+from documentcloud.addon import AddOn
 
 
 class PdfExport(AddOn):
