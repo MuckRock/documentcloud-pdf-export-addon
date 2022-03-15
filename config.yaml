@@ -1,0 +1,5 @@
+title: PDF Exporter
+description: Export the selected PDFs in a zip file
+type: object
+properties: {}
+
