@@ -12,8 +12,7 @@ class PdfExport(AddOn):
 
     def main(self):
         with zipfile.ZipFile("export.zip", mode="w") as archive:
-            for doc_id in self.documents:
-                document = self.client.documents.get(doc_id)
+            for document in self.client.documents.list(id__in=self.documents):
                 with archive.open(f"{document.slug} - {document.id}.pdf", "w") as pdf:
                     pdf.write(document.pdf)
 
