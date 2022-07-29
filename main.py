@@ -12,7 +12,7 @@ class PdfExport(AddOn):
 
     def main(self):
         print(self.documents)
-        if not self.documents:
+        if not self.get_documents():
             self.set_message("Please select at least one document")
             return
 
