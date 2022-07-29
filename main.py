@@ -11,11 +11,6 @@ class PdfExport(AddOn):
     """Export all of the selected documents in a zip file"""
 
     def main(self):
-        print(self.documents)
-        if not self.get_documents():
-            self.set_message("Please select at least one document")
-            return
-
         with zipfile.ZipFile("export.zip", mode="w") as archive:
             for document in self.get_documents():
                 print(f"{document.slug} - {document.id}.pdf")
