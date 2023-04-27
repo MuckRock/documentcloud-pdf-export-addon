@@ -15,7 +15,7 @@ class PdfExport(AddOn):
                 # print(f"{document.slug} - {document.id}.pdf")
                 with archive.open(f"{document.slug} - {document.id}.pdf", "w") as pdf:
                     pdf.write(document.pdf)
-        if os.path.getsize("export.zip") > 5300000000:
+        if os.path.getsize("export.zip")>5300000000:
             self.set_message("The export you are trying to do is larger than 5GB" 
                              " which is the maximum allowed, please retry "
                              "on a smaller set of documents."
