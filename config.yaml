@@ -1,5 +1,9 @@
 title: PDF Exporter
-description: Export the selected PDFs in a zip file. The maximum size of the exported zip file is 5GB, so if you get a failure, retry on a smaller set of documents.
+description: >- 
+  Export the selected PDFs in a zip file. 
+  **Note:** If running this Add-On on a large set of documents and the zip file
+  grows larger than 5GB, you will get a failure. Retry on a smaller set of documents
+  or break up the larger set into smaller subsets. 
 type: object
 properties: {}
 documents:
