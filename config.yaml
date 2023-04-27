@@ -1,5 +1,5 @@
 title: PDF Exporter
-description: Export the selected PDFs in a zip file.
+description: Export the selected PDFs in a zip file. The maximum size of the exported zip file is 5GB, so if you get a failure, retry on a smaller set of documents.
 type: object
 properties: {}
 documents:
