@@ -11,3 +11,5 @@ properties: {}
 documents:
   - selected
   - query
+categories:
+  - export
