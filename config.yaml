@@ -1,12 +1,10 @@
 title: PDF Exporter
 description: >- 
   Export the selected PDFs in a zip file. 
-  
-  
+instructions: >-
   **Note:** If you run this Add-On on a large set of documents and the zip file
   grows larger than 5GB, you will get a failure. Retry on a smaller set of documents
   or break up the larger set into smaller subsets. 
-instructions: ''
 type: object
 properties: {}
 documents:
