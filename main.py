@@ -19,6 +19,7 @@ class PdfExport(AddOn):
         Main function that processes the selected documents and creates a zip file.
         If the zip file exceeds 5GB, an error message is shown, and the process is aborted.
         """
+        self.client.session.headers.update({'User-Agent': 'PDF Exporter Add-On'})
         if self.get_document_count() is None:
             self.set_message("Please select at least one document.")
             return
